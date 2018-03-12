@@ -1,0 +1,60 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mix ECharts</title>
+</head>
+<body>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+/jquery-1.4.min.js"></script>
+
+   
+   
+   
+   
+   
+	<script src="echarts.js"></script>
+	<script src="cmixChar.js"></script>
+   <!--柱状图-->
+		<div id="barchart" style="height:400px;width:500px;"></div>
+		<!--柱状图-->
+    <!-- ECharts单文件引入 -->
+	
+	<!--折线图-->
+	<!--<div id="linechart" style="width:600px;height:400px;position:relative;top:700px;margin-top:700px;"></div>-->
+	<div id="linechart" style="width:500px;height:400px;margin-top:50px"></div>
+	<!--折线图-->
+	
+  
+	
+	
+	
+
+    <script type="text/javascript">
+       function loadTyData(){
+		//alert("testing");
+		var arr=new Array();
+		$.ajax({
+			url:"php/GetTyData.php",
+			type:"POST",
+			async : false,
+			success:function(raw_data){
+				alert("success");
+				 
+				data=JSON.parse(raw_data);
+				for (var i=0;data[i]["type"]!="";i++){
+					arr.push(data[i]["type"]);
+				}
+			},
+			error:function(){
+				alert("not ok");
+				myChart.hideLoading();
+			}
+		});
+		
+		alert(arr.length);
+	   }
+	  
+
+    </script>
+</body>
+</html>

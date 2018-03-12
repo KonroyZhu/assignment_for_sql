@@ -1,0 +1,119 @@
+body{
+	background-image:url(images/img_bg_3.jpg);
+	background-size:cover;
+	background-attachment:fixed;
+	background-repeat:no-repeat;
+}
+nav{
+	width:1200px;
+	height:68px;
+	background-color:#fff;
+	margin:auto;
+	
+}
+
+.main-content{
+	
+	position:relative;
+	margin:auto;
+	width:1200px;
+	height:500px;
+	top:-10px;
+	background-color:transparent;
+	
+}
+.main-wrapper{
+	margin-left:800px;
+	margin:auto;
+	margin-top:80px;
+	display:none;
+}
+
+.header-title{
+	padding-left: 130px;
+	font-family: "Microsoft YaHei";
+	line-height: 68px;
+	float:left;
+}
+.header-title a{
+	text-decoration: none;
+	color: #808080;
+	font-weight: 800;
+	font-size: 20px;
+}
+
+.header-item{
+	padding-right: 130px;
+	font-family: "Microsoft YaHei";
+	line-height: 68px;
+	float:right;
+}
+.header-item a{
+	text-decoration: none;
+	color: #808080;
+	margin-right:10px;
+}
+.header-item a:hover{
+	color: #000000;
+}
+.header-item a:active{
+	background-color: #0099cc;
+	color: #ffffff;
+}
+
+.button{
+	border-radius: 12px 12px 0px 0px;
+	width: 135px;
+	height: 50px;
+	background-color: rgba(153, 204, 51, 0.6);
+	border-color: rgba(153, 204, 51, 0.6);
+	color: #ffffff;
+	font-family: "Microsoft YaHei";
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.content{
+	width: 850px;
+	height: 450px;
+	background-color: rgba(0, 153, 204, 0.6);
+	margin-top: -16px;	
+}
+.label{
+	border-radius: 10px 10px 10px 10px;
+	background-color: transparent;	
+	width: 235px;
+	height: 30px;
+	color: #ffffff;
+	font-size: 20px;
+	border:2px solid #fff;
+}
+#add-label{
+	margin: 80px 0px 0px 130px;
+}
+#delete-label{
+	margin: 100px 0px 0px 130px;
+}
+#trim-label{
+	margin: 50px 0px 0px 130px;
+}
+
+.innerButton{
+	height:30px;
+	width:300px;
+	border-radius: 10px 10px 10px 10px;
+	background-color: rgba(153, 204, 51, 1);
+	border-color: rgba(153, 204, 51, 0.6);
+	color: #ffffff;
+	font-size: 20px;
+	cursor: pointer;
+}
+#add-button{
+	margin: 100px 0px 0px 130px;
+}
+#delete-button{
+	margin: 100px 0px 0px 130px;
+}
+#trim-button{
+	margin: 80px 0px 0px 130px;
+}

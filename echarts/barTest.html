@@ -1,0 +1,170 @@
+﻿<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	<script src="cbar.js"></script>
+    <div id="barchart" style="height:700px;width:700px;"></div>
+    <!-- ECharts单文件引入 -->
+	<button onclick="loadTyData()">test ajax</button>
+    <script src="echarts.js"></script>
+	
+	<head>
+	<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery
+	/jquery-1.4.min.js"></script>
+
+    <script type="text/javascript">
+       function loadTyData(){
+		//alert("testing");
+		var arr=new Array();
+		$.ajax({
+			url:"php/GetTyData.php",
+			type:"POST",
+			async : false,
+			success:function(raw_data){
+				alert("success");
+				 
+				data=JSON.parse(raw_data);
+				for (var i=0;data[i]["type"]!="";i++){
+					arr.push(data[i]["type"]);
+				}
+			},
+			error:function(){
+				alert("not ok");
+				myChart.hideLoading();
+			}
+		});
+		
+		alert(arr.length);
+	   }
+	   
+// 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('barchart')); 
+                
+                var option = {
+					 title : {
+						text: '各类图书销售情况'
+					},
+                    tooltip: {
+                        show: true
+                    },
+                    legend: {
+                        data:['销量'],
+						
+                    },
+                    xAxis : [
+                        {
+                            type : 'category',
+                            //data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+							//data  :  ["条形1","柱状2"]
+							/*data:(function(){
+								arr=[];
+								arr.push("条形1");
+								arr.push("条形2");
+								arr.push("条形3");
+								arr.push("条形4");
+								return arr;
+							})()
+							*/
+							data:(
+								function(){
+											//var arr=[];
+											var arr=new Array();
+											$.ajax({
+												url:"php/GetTyData.php",
+												type:"POST",
+												async : false,
+												success:function(raw_data){
+													//alert("success");
+													 
+													data=JSON.parse(raw_data);
+													for (var i=0;data[i]["type"]!="";i++){
+														arr.push(data[i]["type"]);
+													}
+												},
+												error:function(){
+													alert("not ok");
+													myChart.hideLoading();
+												}
+											});
+											return arr;
+							
+								}
+							)()
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value'
+                        }
+                    ],
+                    series : [
+                        {
+                            "name":"销售",
+                            "type":"bar",
+                            //"data":[ 20, 40, 10, 10]
+							//"data":[10,30],
+							/*"data":(function(){
+								//return [ 20, 30, 10, 50];
+								var arr=new Array();
+								arr.push("20");
+								arr.push("40");
+								arr.push("10");
+								arr.push("40");
+								return arr;
+								
+							})()*/
+							"data":(
+								function(){
+											//var arr=[];
+											var arr=new Array();
+											$.ajax({
+												url:"php/GetTyData.php",
+												type:"POST",
+												async : false,
+												success:function(raw_data){
+													//alert("success");
+													 
+													data=JSON.parse(raw_data);
+													for (var i=0;data[i]["type"]!="";i++){
+														arr.push(data[i]["sellData"]);
+													}
+												},
+												error:function(){
+													alert("not ok");
+													myChart.hideLoading();
+												}
+											});
+											return arr;
+							
+								}
+							)()
+							
+                        }
+                    ]
+                };
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+	   
+    </script>
+</body>
+</html>

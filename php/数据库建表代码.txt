@@ -1,0 +1,17 @@
+create table info(bookId int(4) zerofill auto_increment, bookName varchar(200),type varchar(100), author varchar(200),price int(4),cover varchar(300) ,primary key(bookId));
+
+
+insert into info (bookName,type,author,price,cover) values( '新手学Visual C#','教程','刘*亮',55,'');
+insert into info (bookName,type,author,price,cover) values( 'Javascript编程艺术','教程','Jeremy Keith',49,''),('Servlet和JSP学习指南','教程','Budi Kurniawan',59,'');
+
+create table supply(supplyId int(4) zerofill auto_increment,bookId int(4),amount int(4),supplyDate varchar(100),primary key(supplyId));
+
+ insert into supply (bookId, amount,supplyDate) values(0001,20,'2017-5-28'),(0002,40,'2017-5-28'),(0003,10,'2017-5-28');
+
+create table sell(sellId int(4) zerofill auto_increment,bookId int(4),amount int(4),sellDate varchar(100),primary key(sellId));
+
+
+ insert into sell (bookId, amount,sellDate) values(0001,10,'2017-5-28'),(0002,4,'2017-5-28'),(0003,4,'2017-5-28');
+
+
+ create view stock  as  select info.bookId,info.bookName,info.type,info.author,supply.amount-sell.amount from info,sell,supply where info.bookId=sell.bookId and info.bookId=supply.bookId and sell.bookId=supply.bookId;
